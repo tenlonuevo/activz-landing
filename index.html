@@ -1,0 +1,723 @@
+<!-- ==================== ESTILOS GENERALES Y RESPONSIVE (MÓVIL PRIMERO) ==================== -->
+<style>
+    .activz-wrapper {
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        color: #2D3748;
+        background-color: #F8F9FA;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    .activz-wrapper * {
+        box-sizing: border-box;
+    }
+    .activz-container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 16px;
+    }
+    /* Colores Principales Corporativos */
+    .bg-navy { background-color: #0C2340; }
+    .text-navy { color: #0C2340; }
+    .bg-orange { background-color: #F37021; }
+    .bg-orange-hover:hover { background-color: #d95d13; }
+    .text-orange { color: #F37021; }
+    .text-green { color: #059669; }
+    .bg-whatsapp { background-color: #25D366; }
+    .bg-whatsapp-hover:hover { background-color: #1eb856; }
+
+    /* Tarjetas y Sombras Visuales */
+    .card-shadow {
+        box-shadow: 0 8px 20px rgba(12, 35, 64, 0.08);
+        border-radius: 16px;
+        background: #ffffff;
+        border: 1px solid #E2E8F0;
+        overflow: hidden;
+    }
+    .btn-action {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-weight: 800;
+        text-decoration: none;
+        border-radius: 50px;
+        padding: 16px 28px;
+        transition: all 0.3s ease;
+        text-align: center;
+        cursor: pointer;
+        border: none;
+    }
+    .btn-action:hover {
+        transform: translateY(-2px);
+    }
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        height: 0;
+        overflow: hidden;
+        border-radius: 16px;
+        background-color: #000;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: 0;
+    }
+
+    /* BARRA DESLIZANTE DE PRODUCTOS RESPONSIVE */
+    .product-slider-bar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+        background: #ffffff;
+        border: 1px solid #CBD5E0;
+        padding: 6px 16px;
+        border-radius: 50px;
+        max-width: 360px;
+        margin: 10px auto 22px auto;
+        box-shadow: 0 4px 12px rgba(12, 35, 64, 0.06);
+    }
+    .slider-arrow-btn {
+        background: #0C2340;
+        color: #ffffff;
+        border: none;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        font-size: 14px;
+        font-weight: 900;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 0.2s ease;
+    }
+    .slider-arrow-btn:hover { background: #F37021; }
+    .slider-bar-text {
+        font-size: 11px;
+        font-weight: 700;
+        color: #0C2340;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .scrollable-products-track {
+        display: flex !important;
+        overflow-x: auto !important;
+        scroll-behavior: smooth;
+        gap: 18px;
+        padding: 6px 4px 18px 4px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: #F37021 #CBD5E0;
+    }
+    .scrollable-products-track::-webkit-scrollbar { height: 8px; }
+    .scrollable-products-track::-webkit-scrollbar-track { background: #E2E8F0; border-radius: 10px; }
+    .scrollable-products-track::-webkit-scrollbar-thumb { background: #F37021; border-radius: 10px; }
+    .scrollable-products-track > div {
+        flex: 0 0 320px !important;
+        min-width: 320px !important;
+        max-width: 320px !important;
+    }
+    @media (max-width: 600px) {
+        .scrollable-products-track > div {
+            flex: 0 0 88% !important;
+            min-width: 88% !important;
+            max-width: 88% !important;
+        }
+    }
+
+    /* Pestañas de Navegación */
+    .tab-button {
+        padding: 10px 18px;
+        border-radius: 30px;
+        font-weight: 700;
+        font-size: 13px;
+        cursor: pointer;
+        border: 2px solid #0C2340;
+        background: transparent;
+        color: #0C2340;
+        transition: all 0.2s ease;
+    }
+    .tab-button.active {
+        background: #0C2340;
+        color: #FFFFFF;
+    }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    /* Cinta y Contador de Urgencia */
+    .ribbon-red {
+        background: linear-gradient(90deg, #DC2626 0%, #EF4444 100%);
+        color: #FFFFFF;
+        font-weight: 800;
+        font-size: 13px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        padding: 8px 16px;
+        border-radius: 8px;
+        display: inline-block;
+    }
+    .urgency-bar {
+        background-color: #1E293B;
+        color: #FFFFFF;
+        font-size: 12px;
+        padding: 8px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+    }
+    .timer-badge {
+        background: #DC2626;
+        color: #FFFFFF;
+        font-weight: 800;
+        padding: 2px 8px;
+        border-radius: 4px;
+        font-family: monospace;
+        font-size: 14px;
+    }
+
+    .product-img-container {
+        text-align: center;
+        padding: 15px;
+        background: #ffffff;
+        border-bottom: 1px solid #E2E8F0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 210px;
+    }
+    .product-img-container img {
+        max-width: 100%;
+        max-height: 190px;
+        object-fit: contain;
+    }
+
+    /* Estilos de Síntomas / Enfermedades Cubiertas */
+    .tag-symptom {
+        display: inline-block;
+        background: #EDF2F7;
+        color: #2D3748;
+        font-size: 11px;
+        font-weight: 600;
+        padding: 3px 8px;
+        border-radius: 4px;
+        margin: 2px;
+    }
+</style>
+
+<div class="activz-wrapper">
+
+    <!-- CINTA DE ESCASEZ -->
+    <div class="urgency-bar">
+        <span>🏷️ <strong>LOTE ESPECIAL :</strong> Oferta promocional hoy cierra en:</span>
+        <div class="timer-badge" id="countdown-timer">14:59</div>
+    </div>
+
+    <!-- HEADER / BARRA SUPERIOR -->
+    <header style="background: #ffffff; border-bottom: 1px solid #E2E8F0; position: sticky; top: 0; z-index: 50;">
+        <div class="activz-container" style="padding-top: 10px; padding-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
+            <div style="display: flex; align-items: center; gap: 8px;">
+                <div class="bg-orange" style="color: #ffffff; font-weight: 900; font-size: 20px; padding: 4px 10px; border-radius: 6px;">
+                    ACTIVZ
+                </div>
+                <span class="text-navy" style="font-size: 11px; font-weight: 700; text-transform: uppercase; border-left: 2px solid #F37021; padding-left: 8px;">
+                    Biotecnología Epigenética
+                </span>
+            </div>
+            <a href="#whatsapp-section" class="bg-whatsapp bg-whatsapp-hover" style="color: #ffffff; text-decoration: none; font-size: 12px; font-weight: 700; padding: 8px 14px; border-radius: 50px;">
+                Contacto Directo
+            </a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION DE ALTO IMPACTO -->
+    <section style="background: linear-gradient(180deg, #FFFFFF 0%, #FFF5ED 100%); padding: 30px 16px 40px; text-align: center;">
+        <div class="activz-container" style="max-width: 850px;">
+            
+            <div style="margin-bottom: 12px;">
+                <div class="ribbon-red">
+                    🚚 ¡YA EN ECUADOR CON ENVIOS HASTA TU PUERTA!
+                </div>
+            </div>
+
+            <h1 class="text-navy" style="font-size: 28px; font-weight: 800; line-height: 1.25; margin-bottom: 16px;">
+                ¿Luchas contra padecimientos crónicos, dolor constante o falta de energía vital?
+            </h1>
+
+            <p style="font-size: 18px; color: #4A5568; margin-bottom: 28px;">
+                Ha llegado la <strong class="text-orange" style="text-decoration: underline;">solución real y novedosa</strong> que casi nadie conoce:<br>
+                Descubre la <strong class="text-green">Biotecnología Epigenética Nrf2:</strong> Una tecnología de vanguardia que activa la autoprotección celular desde tu propio ADN y transforma tu bienestar desde el origen.
+            </p>
+
+            <!-- VIDEO 1: PRESENTACIÓN Y CIENCIA DE PRODUCTO -->
+            <div style="max-width: 680px; margin: 0 auto 20px;">
+                <div class="video-container">
+                    <iframe src="https://www.youtube-nocookie.com/embed/Hq8prA7hvJQ" title="ACTIVZ Presentacion Epigenetica" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div style="background: #ffffff; border: 1px solid #E2E8F0; border-radius: 8px; padding: 8px 12px; margin-top: 8px; font-size: 12px; color: #718096;">
+                    ▶️ <em>Mira este breve video para entender cómo la epigenética repara tus células.</em>
+                </div>
+            </div>
+
+            <!-- Botón hacia WhatsApp -->
+            <div>
+                <a href="#whatsapp-section" class="btn-action bg-orange bg-orange-hover" style="color: #ffffff; font-size: 16px; width: 100%; max-width: 450px; flex-direction: column; gap: 2px;">
+                    <span>🛒 SOLICITAR ASESORÍA O PEDIDO</span>
+                    <span style="font-size: 11px; font-weight: 500; opacity: 0.95;">⚡ Despacho Prioritario | Venta Asistida</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- MÓDULO I: CATÁLOGO DE PRODUCTOS DETALLADO -->
+    <section id="modulo-salud" class="activz-container" style="padding: 20px 16px 30px;">
+        
+        <div class="bg-navy" style="color: #ffffff; padding: 18px; border-radius: 12px; text-align: center; margin-bottom: 24px;">
+            <span class="text-orange" style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">Módulo I: Biotecnología Epigenética Celular</span>
+            <h2 style="font-size: 20px; margin: 4px 0 0; font-weight: 700;">
+                Catálogo de Productos Oficial ACTIVZ 2026
+            </h2>
+        </div>
+
+        <!-- Selector de Pestañas -->
+        <div style="display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 12px;">
+            <button class="tab-button active" onclick="openTab(event, 'trifecta')">🏆 La Trifecta Epigenética</button>
+            <button class="tab-button" onclick="openTab(event, 'nutrigenomica')">⚡ Rendimiento y Metabolismo</button>
+            <button class="tab-button" onclick="openTab(event, 'estetica')">✨ Belleza y Cuidado Corporal</button>
+        </div>
+
+        <!-- Barra Deslizante para Celulares -->
+        <div class="product-slider-bar">
+            <button class="slider-arrow-btn" onclick="slideGlobalProducts(-320)">◀</button>
+            <span class="slider-bar-text">Desliza para ver más productos</span>
+            <button class="slider-arrow-btn" onclick="slideGlobalProducts(320)">▶</button>
+        </div>
+
+        <!-- CATEGORÍA 1: LA TRIFECTA -->
+        <div id="trifecta" class="tab-content active">
+            <div class="scrollable-products-track">
+                
+                <!-- GNM-X -->
+                <div class="card-shadow" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="product-img-container">
+                            <img src="https://activz.myvoffice.com/ShoppingCart/LNG/ENG/20240304105219_gnmx_usa__63510.jpg" alt="ACTIVZ GNM-X">
+                        </div>
+                        <div style="padding: 16px;">
+                            <h3 class="text-navy" style="font-size: 18px; font-weight: 800; margin: 0 0 4px;">GNM-X</h3>
+                            <p style="font-size: 12px; font-weight: 700; color: #059669; margin: 0 0 10px;">Regenerador Nrf2 y Sistema de Defensa</p>
+                            <p style="font-size: 12px; color: #4A5568; margin-bottom: 10px;">
+                                Activa la producción propia de antioxidantes primarios: <strong>Superóxido Dismutasa, Catalasa y Glutatión</strong> desde tu ADN.
+                            </p>
+                            
+                            <div style="margin-bottom: 10px;">
+                                <strong style="font-size: 11px; color: #0C2340; display: block; margin-bottom: 4px;">Padecimientos que apoya:</strong>
+                                <span class="tag-symptom">Diabetes 1 y 2</span>
+                                <span class="tag-symptom">Hipertensión</span>
+                                <span class="tag-symptom">Artritis</span>
+                                <span class="tag-symptom">Lupus</span>
+                                <span class="tag-symptom">Fibromialgia</span>
+                                <span class="tag-symptom">Gastritis</span>
+                                <span class="tag-symptom">Parkinson</span>
+                                <span class="tag-symptom">Psoriasis</span>
+                                <span class="tag-symptom">Insomnio</span>
+                            </div>
+
+                            <p style="font-size: 11px; color: #718096; margin: 0;">
+                                <strong>Ingredientes:</strong> Romero, Jengibre y Luteína de Sophora Japonica.
+                            </p>
+                        </div>
+                    </div>
+                    <div style="border-top: 1px solid #EDF2F7; padding: 10px 16px; font-size: 11px; color: #4A5568; background: #F8FAFC;">
+                        <strong>Dosis:</strong> 1 cápsula al día con alimentos.
+                    </div>
+                </div>
+
+                <!-- LINQ -->
+                <div class="card-shadow" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="product-img-container">
+                            <img src="https://activz.myvoffice.com/ShoppingCart/LNG/ENG/20230131231021_1008US.png" alt="ACTIVZ LINQ">
+                        </div>
+                        <div style="padding: 16px;">
+                            <h3 class="text-navy" style="font-size: 18px; font-weight: 800; margin: 0 0 4px;">LINQ</h3>
+                            <p style="font-size: 12px; font-weight: 700; color: #D97706; margin: 0 0 10px;">Eje Intestino-Cerebro y Digestión</p>
+                            <p style="font-size: 12px; color: #4A5568; margin-bottom: 10px;">
+                                Fórmula a base de <strong>Ácido Butírico microencapsulado</strong> que restaura la microbiota y la mucosa intestinal.
+                            </p>
+                            
+                            <div style="margin-bottom: 10px;">
+                                <strong style="font-size: 11px; color: #0C2340; display: block; margin-bottom: 4px;">Padecimientos que apoya:</strong>
+                                <span class="tag-symptom">Colitis y Gastritis</span>
+                                <span class="tag-symptom">Reflujo y Acidez</span>
+                                <span class="tag-symptom">Intestino Irritable</span>
+                                <span class="tag-symptom">Alzheimer</span>
+                                <span class="tag-symptom">Ansiedad / Depresión</span>
+                                <span class="tag-symptom">Autismo y TDAH</span>
+                                <span class="tag-symptom">Hígado Graso</span>
+                            </div>
+
+                            <p style="font-size: 11px; color: #718096; margin: 0;">
+                                <strong>Ingredientes:</strong> Ácido Butírico, Inulina de Agave y Fructooligosacáridos.
+                            </p>
+                        </div>
+                    </div>
+                    <div style="border-top: 1px solid #EDF2F7; padding: 10px 16px; font-size: 11px; color: #4A5568; background: #F8FAFC;">
+                        <strong>Dosis:</strong> 2 cápsulas al día.
+                    </div>
+                </div>
+
+                <!-- OPTIMEND -->
+                <div class="card-shadow" style="display: flex; flex-direction: column; justify-content: space-between;">
+                    <div>
+                        <div class="product-img-container">
+                            <img src="https://activz.myvoffice.com/ShoppingCart/LNG/ENG/20230131230651_1009US.png" alt="ACTIVZ OPTIMEND">
+                        </div>
+                        <div style="padding: 16px;">
+                            <h3 class="text-navy" style="font-size: 18px; font-weight: 800; margin: 0 0 4px;">OPTIMEND</h3>
+                            <p style="font-size: 12px; font-weight: 700; color: #6D28D9; margin: 0 0 10px;">Elimina Dolor Articular e Inflamación</p>
+                            <p style="font-size: 12px; color: #4A5568; margin-bottom: 10px;">
+                                Desinflamatorio celular epigenético que inhibe las enzimas del dolor y la rigidez.
+                            </p>
+                            
+                            <div style="margin-bottom: 10px;">
+                                <strong style="font-size: 11px; color: #0C2340; display: block; margin-bottom: 4px;">Padecimientos que apoya:</strong>
+                                <span class="tag-symptom">Artritis Reumatoide</span>
+                                <span class="tag-symptom">Dolor de Ciática</span>
+                                <span class="tag-symptom">Osteoartritis</span>
+                                <span class="tag-symptom">Fibromialgia</span>
+                                <span class="tag-symptom">Dolor Crónico</span>
+                                <span class="tag-symptom">Hinchazón Articular</span>
+                            </div>
+
+                            <p style="font-size: 11px; color: #718096; margin: 0;">
+                                <strong>Ingredientes:</strong> Tetrahidrocurcumina avanzada y Boswellia Serrata.
+                            </p>
+                        </div>
+                    </div>
+                    <div style="border-top: 1px solid #EDF2F7; padding: 10px 16px; font-size: 11px; color: #4A5568; background: #F8FAFC;">
+                        <strong>Dosis:</strong> 2 cápsulas al día.
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CATEGORÍA 2: RENDIMIENTO Y METABOLISMO -->
+        <div id="nutrigenomica" class="tab-content">
+            <div class="scrollable-products-track">
+                
+                <!-- AIRO -->
+                <div class="card-shadow">
+                    <div class="product-img-container">
+                        <img src="https://activz.myvoffice.com/ShoppingCart/LNG/ENG/20251020131345_3007US.png" alt="ACTIVZ AIRO">
+                    </div>
+                    <div style="padding: 16px;">
+                        <h3 class="text-navy" style="font-size: 18px; font-weight: 800; margin: 0 0 4px;">AIRO (Sabor Camu Camu)</h3>
+                        <p style="font-size: 12px; font-weight: 700; color: #EA580C; margin: 0 0 8px;">Bebida Epigenética Metabólica</p>
+                        <p style="font-size: 12px; color: #4A5568; margin-bottom: 10px;">
+                            Efecto termogénico natural que agiliza la quema de grasa, controla el apetito y nivela el azúcar en sangre.
+                        </p>
+                        <div style="margin-bottom: 8px;">
+                            <span class="tag-symptom">Pérdida de Peso</span>
+                            <span class="tag-symptom">Control de Ansiedad</span>
+                            <span class="tag-symptom">Energía Limpia</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- NITROXPRO -->
+                <div class="card-shadow">
+                    <div class="product-img-container">
+                        <img src="https://activz.myvoffice.com/ShoppingCart/LNG/ENG/20250605144022_3010US__2_.png" alt="ACTIVZ NITROXPRO">
+                    </div>
+                    <div style="padding: 16px;">
+                        <h3 class="text-navy" style="font-size: 18px; font-weight: 800; margin: 0 0 4px;">NITROXPRO</h3>
+                        <p style="font-size: 12px; font-weight: 700; color: #DC2626; margin: 0 0 8px;">Potenciador de Óxido Nítrico</p>
+                        <p style="font-size: 12px; color: #4A5568; margin-bottom: 10px;">
+                            Mejora el flujo sanguíneo, oxigena el cerebro y reduce la fatiga física y muscular.
+                        </p>
+                        <div style="margin-bottom: 8px;">
+                            <span class="tag-symptom">Presión Arterial</span>
+                            <span class="tag-symptom">Salud Cardiovascular</span>
+                            <span class="tag-symptom">Rendimiento Físico</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- CATEGORÍA 3: BELLEZA -->
+        <div id="estetica" class="tab-content">
+            <div class="scrollable-products-track">
+                
+                <!-- EVERYDAY -->
+                <div class="card-shadow">
+                    <div class="product-img-container">
+                        <img src="https://activz.myvoffice.com/ShoppingCart/LNG/ENG/20251203163937_3020US.png" alt="ACTIVZ EVERYDAY">
+                    </div>
+                    <div style="padding: 16px;">
+                        <h3 class="text-navy" style="font-size: 18px; font-weight: 800; margin: 0 0 4px;">EVERYDAY (Moka Coco)</h3>
+                        <p style="font-size: 12px; font-weight: 700; color: #1E3A8A; margin: 0 0 8px;">Café Adaptogénico de Belleza</p>
+                        <p style="font-size: 12px; color: #4A5568;">
+                            Formulado con Colágeno Hidrolizado, Ácido Hialurónico y Hongos Adaptógenos (Chaga y Tremella) para rejuvenecer tu piel.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- EMORA SET -->
+                <div class="card-shadow">
+                    <div class="product-img-container">
+                        <img src="https://activz.myvoffice.com/ShoppingCart/LNG/ENG/20240923172110_70011US.png" alt="ACTIVZ EMORA SET">
+                    </div>
+                    <div style="padding: 16px;">
+                        <h3 class="text-navy" style="font-size: 18px; font-weight: 800; margin: 0 0 4px;">EMORA SKINCARE SET</h3>
+                        <p style="font-size: 12px; font-weight: 700; color: #0284C7; margin: 0 0 8px;">Tratamiento Facial Epigenético</p>
+                        <p style="font-size: 12px; color: #4A5568;">
+                            Reduce líneas de expresión y arrugas con Barro Purificador, Esencia Tonificadora, Suero Rejuvenecedor y Crema Revitalizadora.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </section>
+
+    <!-- BLOQUE: TESTIMONIOS REALES DE TRANSFORMACIÓN -->
+    <section class="activz-container" style="padding: 20px 16px 40px;">
+        
+        <div style="text-align: center; margin-bottom: 24px;">
+            <span class="ribbon-red" style="margin-bottom: 8px;">⭐ PRUEBA SOCIAL VERIFICADA</span>
+            <h2 class="text-navy" style="font-size: 22px; font-weight: 800; margin: 4px 0 8px;">
+                Historias Reales de Superación y Bienestar
+            </h2>
+            <p style="font-size: 14px; color: #4A5568; max-width: 650px; margin: 0 auto;">
+                Conoce cómo personas en situaciones críticas y con padecimientos severos recuperaron su calidad de vida gracias a la activación celular.
+            </p>
+        </div>
+
+        <!-- Contenedor de Videos de Testimonios (Grid Responsive) -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; max-width: 950px; margin: 0 auto 24px;">
+            
+            <!-- TESTIMONIO 1 -->
+            <div class="card-shadow" style="padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div style="font-size: 13px; font-weight: 800; color: #0C2340; margin-bottom: 8px; text-align: center;">
+                        🎥 "Recuperación de movilidad y alivio en artritis severa"
+                    </div>
+                    <div class="video-container" style="margin-bottom: 12px;">
+                        <iframe src="https://www.youtube-nocookie.com/embed/Hq8prA7hvJQ" title="Testimonio Actv-1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <a href="#whatsapp-section" style="font-size: 12px; font-weight: 700; color: #059669; text-decoration: none;">
+                        💬 ¿Te identificas? Consúltanos por WhatsApp &rarr;
+                    </a>
+                </div>
+            </div>
+
+            <!-- TESTIMONIO 2 -->
+            <div class="card-shadow" style="padding: 16px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <div style="font-size: 13px; font-weight: 800; color: #0C2340; margin-bottom: 8px; text-align: center;">
+                        🎥 "Control y bienestar ante padecimientos metabólicos"
+                    </div>
+                    <div class="video-container" style="margin-bottom: 12px;">
+                        <iframe src="https://www.youtube-nocookie.com/embed/Hq8prA7hvJQ" title="Testimonio Actv-2" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div style="text-align: center;">
+                    <a href="#whatsapp-section" style="font-size: 12px; font-weight: 700; color: #059669; text-decoration: none;">
+                        💬 ¿Te identificas? Consúltanos por WhatsApp &rarr;
+                    </a>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- MÓDULO II: OPORTUNIDAD DE NEGOCIO Y AUTOCONSUMO INTELIGENTE (OPTIMIZADO Y EDITABLE) -->
+    <section class="activz-container" style="padding: 20px 16px 40px;">
+        
+        <div class="bg-navy" style="color: #ffffff; padding: 18px; border-radius: 12px; text-align: center; margin-bottom: 24px;">
+            <span class="text-orange" style="font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;">Módulo II: Modelo de Afiliación Inteligente</span>
+            <h2 style="font-size: 20px; margin: 4px 0 0; font-weight: 700;">
+                Haz que tu Tratamiento se Pague Solo y Genera Ingresos en Dólares
+            </h2>
+        </div>
+
+        <div style="display: flex; flex-wrap: wrap; gap: 24px; align-items: center;">
+            <div style="flex: 1 1 300px;">
+                <h3 class="text-navy" style="font-size: 18px; font-weight: 700; margin-top: 0; margin-bottom: 12px;">
+                    ¿Por qué te conviene ser Distribuidor Independiente (2 en 1)?
+                </h3>
+                
+                <!-- LISTA DE BENEFICIOS EDITABLES (MODULAR) -->
+                <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 13px;" id="editable-benefits-list">
+                    
+                    <li style="background: #ffffff; padding: 12px; border-radius: 8px; border: 1px solid #E2E8F0;">
+                        ✅ <strong>Precio al Por Mayor + Autoenvío Rebajado:</strong> Obtén tu tratamiento personal al precio más bajo y disfruta de descuentos exclusivos en tus recompras automáticas[cite: 27].
+                    </li>
+                    
+                    <li style="background: #ffffff; padding: 12px; border-radius: 8px; border: 1px solid #E2E8F0;">
+                        💵 <strong>Bonos de Inicio Rápido y Comisiones:</strong> Genera ingresos semanales en dólares cada vez que recomiendes la biotecnología a nuevos socios o clientes.
+                    </li>
+                    
+                    <li style="background: #ffffff; padding: 12px; border-radius: 8px; border: 1px solid #E2E8F0;">
+                        🚀 <strong>Bono "Yo +3" ($250):</strong> Gana este incentivo especial en efectivo al inscribir a tus 3 primeros socios en tu primera semana de actividad.
+                    </li>
+                    
+                    <li style="background: #ffffff; padding: 12px; border-radius: 8px; border: 1px solid #E2E8F0;">
+                        📈 <strong>Ascenso por Rangos y Porcentajes:</strong> Multiplica tus porcentajes de ganancia y maximiza todos los beneficios al expandir tu red[cite: 27].
+                    </li>
+                    
+                    <li style="background: #ffffff; padding: 12px; border-radius: 8px; border: 1px solid #E2E8F0;">
+                        ✈️ <strong>Viajes y Bonos Especiales:</strong> Accede a reconocimientos globales e incentivos de viaje de lujo pagados por la compañía.
+                    </li>
+
+                </ul>
+            </div>
+
+            <!-- VIDEO 2: PLAN DE COMPENSACIÓN Y FRANQUICIA (OPTIMIZADO) -->
+            <div style="flex: 1 1 420px;">
+                <div class="video-container">
+                    <iframe src="https://www.youtube-nocookie.com/embed/Hq8prA7hvJQ" title="ACTIVZ Plan de Compensacion" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                </div>
+                <div style="background: #ffffff; border: 1px solid #E2E8F0; border-radius: 8px; padding: 8px 12px; margin-top: 8px; font-size: 12px; color: #718096; text-align: center;">
+                    ▶️ <em>Descubre cómo transformar tu autoconsumo en una fuente sólida de ingresos.</em>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+    <!-- TABLA COMPARATIVA DE CIERRE (OFICIAL ACTIVZ) -->
+    <section class="activz-container" style="padding: 10px 16px 30px;">
+        <div class="card-shadow" style="padding: 20px;">
+            <h3 class="text-navy" style="font-size: 18px; font-weight: 700; text-align: center; margin: 0 0 14px;">
+                Elige la Opción que Mejor Se Adapte a Ti
+            </h3>
+            
+            <div style="overflow-x: auto;">
+                <table style="width: 100%; border-collapse: collapse; font-size: 13px; text-align: left;">
+                    <thead>
+                        <tr style="background: #F7FAFC; border-bottom: 2px solid #E2E8F0;">
+                            <th style="padding: 10px;">Beneficio / Requisito</th>
+                            <th style="padding: 10px; text-align: center;">Cliente Preferido</th>
+                            <th style="padding: 10px; text-align: center; color: #F37021; font-weight: 800;">Distribuidor (2 en 1) ⭐</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid #E2E8F0;">
+                            <td style="padding: 10px;">Precio de Mayorista</td>
+                            <td style="padding: 10px; text-align: center; color: #38A169;">✓ Sí (Autoenvío mensual)[cite: 27]</td>
+                            <td style="padding: 10px; text-align: center; color: #38A169; font-weight: 700;">✓ Sí (Siempre al por mayor)[cite: 27]</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #E2E8F0;">
+                            <td style="padding: 10px;">Kit de Activación / Compras</td>
+                            <td style="padding: 10px; text-align: center; color: #4A5568;">Sin compras mínimas rígidas[cite: 27]</td>
+                            <td style="padding: 10px; text-align: center; color: #38A169;">Requiere Kit de Activación[cite: 27]</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid #E2E8F0;">
+                            <td style="padding: 10px;">Programa de Lealtad y Productos Gratis</td>
+                            <td style="padding: 10px; text-align: center; color: #38A169;">✓ Producto Gratis (Min. 50 VP por 3 meses)[cite: 27]</td>
+                            <td style="padding: 10px; text-align: center; color: #38A169;">✓ Puntos de recompensa mensuales[cite: 27]</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px;">Generar Ingresos y Comisiones en Dólares</td>
+                            <td style="padding: 10px; text-align: center; color: #E53E3E;">✕ No[cite: 27]</td>
+                            <td style="padding: 10px; text-align: center; color: #38A169; font-weight: 800;">✓ HABILITADO[cite: 27]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER Y BOTÓN FINAL DE WHATSAPP -->
+    <section id="whatsapp-section" class="bg-navy" style="color: #ffffff; padding: 40px 16px; text-align: center;">
+        <div class="activz-container" style="max-width: 600px;">
+            
+            <h2 style="font-size: 22px; font-weight: 800; margin: 0 0 10px;">
+                ¿Listo para Iniciar o Tienes Dudas?
+            </h2>
+
+            <p style="font-size: 13px; color: #CBD5E0; margin-bottom: 20px;">
+                Haz clic abajo para chatear por WhatsApp con tu distribuidor oficial. Te guiaremos paso a paso para procesar tu pedido o inscripción de forma inmediata.
+            </p>
+
+            <div>
+                <a href="https://wa.me/50500000000?text=Hola,%20vi%20la%20p%C3%A1gina%20y%20deseo%20m%C3%A1s%20informaci%C3%B3n%20para%20inscribirme%20en%20ACTIVZ." target="_blank" class="btn-action bg-whatsapp bg-whatsapp-hover" style="color: #ffffff; font-size: 15px; width: 100%; max-width: 420px;">
+                    <span>💬 CHATEAR POR WHATSAPP AHORA</span>
+                </a>
+            </div>
+
+            <div style="border-top: 1px solid #1A365D; margin-top: 30px; padding-top: 16px; font-size: 11px; color: #A0AEC0;">
+                © 2026 vitalgenlife.com — Distribuidor Independiente ACTIVZ. Todos los derechos reservados.
+            </div>
+
+        </div>
+    </section>
+
+</div>
+
+<!-- SCRIPTS DE PESTAÑAS, CONTADOR Y NAVEGACIÓN -->
+<script>
+    function slideGlobalProducts(distance) {
+        var activeTabContainer = document.querySelector('.tab-content.active .scrollable-products-track');
+        if (activeTabContainer) {
+            activeTabContainer.scrollBy({ left: distance, behavior: 'smooth' });
+        }
+    }
+
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].classList.remove("active");
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tab-button");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].classList.remove("active");
+        }
+        var targetTab = document.getElementById(tabName);
+        if(targetTab) {
+            targetTab.style.display = "block";
+            targetTab.classList.add("active");
+        }
+        if(evt && evt.currentTarget) {
+            evt.currentTarget.classList.add("active");
+        }
+    }
+
+    (function() {
+        var time = 14 * 60 + 59;
+        var display = document.getElementById('countdown-timer');
+        if(!display) return;
+        setInterval(function() {
+            var minutes = Math.floor(time / 60);
+            var seconds = time % 60;
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+            display.textContent = minutes + ":" + seconds;
+            if (--time < 0) {
+                time = 15 * 60;
+            }
+        }, 1000);
+    })();
+</script>
