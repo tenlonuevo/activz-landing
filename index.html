@@ -1,220 +1,230 @@
-<!-- ==================== ESTILOS GENERALES Y RESPONSIVE (MÓVIL PRIMERO) ==================== -->
-<style>
-    .activz-wrapper {
-        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-        color: #2D3748;
-        background-color: #F8F9FA;
-        line-height: 1.6;
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-    }
-    .activz-wrapper * {
-        box-sizing: border-box;
-    }
-    .activz-container {
-        max-width: 1100px;
-        margin: 0 auto;
-        padding: 0 16px;
-    }
-    /* Colores Principales Corporativos */
-    .bg-navy { background-color: #0C2340; }
-    .text-navy { color: #0C2340; }
-    .bg-orange { background-color: #F37021; }
-    .bg-orange-hover:hover { background-color: #d95d13; }
-    .text-orange { color: #F37021; }
-    .text-green { color: #059669; }
-    .bg-whatsapp { background-color: #25D366; }
-    .bg-whatsapp-hover:hover { background-color: #1eb856; }
-
-    /* Tarjetas y Sombras Visuales */
-    .card-shadow {
-        box-shadow: 0 8px 20px rgba(12, 35, 64, 0.08);
-        border-radius: 16px;
-        background: #ffffff;
-        border: 1px solid #E2E8F0;
-        overflow: hidden;
-    }
-    .btn-action {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        font-weight: 800;
-        text-decoration: none;
-        border-radius: 50px;
-        padding: 16px 28px;
-        transition: all 0.3s ease;
-        text-align: center;
-        cursor: pointer;
-        border: none;
-    }
-    .btn-action:hover {
-        transform: translateY(-2px);
-    }
-    .video-container {
-        position: relative;
-        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-        height: 0;
-        overflow: hidden;
-        border-radius: 16px;
-        background-color: #000;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-    }
-    .video-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border: 0;
-    }
-
-    /* BARRA DESLIZANTE DE PRODUCTOS RESPONSIVE */
-    .product-slider-bar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        background: #ffffff;
-        border: 1px solid #CBD5E0;
-        padding: 6px 16px;
-        border-radius: 50px;
-        max-width: 360px;
-        margin: 10px auto 22px auto;
-        box-shadow: 0 4px 12px rgba(12, 35, 64, 0.06);
-    }
-    .slider-arrow-btn {
-        background: #0C2340;
-        color: #ffffff;
-        border: none;
-        width: 32px;
-        height: 32px;
-        border-radius: 50%;
-        font-size: 14px;
-        font-weight: 900;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        transition: background 0.2s ease;
-    }
-    .slider-arrow-btn:hover { background: #F37021; }
-    .slider-bar-text {
-        font-size: 11px;
-        font-weight: 700;
-        color: #0C2340;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    .scrollable-products-track {
-        display: flex !important;
-        overflow-x: auto !important;
-        scroll-behavior: smooth;
-        gap: 18px;
-        padding: 6px 4px 18px 4px;
-        -webkit-overflow-scrolling: touch;
-        scrollbar-width: thin;
-        scrollbar-color: #F37021 #CBD5E0;
-    }
-    .scrollable-products-track::-webkit-scrollbar { height: 8px; }
-    .scrollable-products-track::-webkit-scrollbar-track { background: #E2E8F0; border-radius: 10px; }
-    .scrollable-products-track::-webkit-scrollbar-thumb { background: #F37021; border-radius: 10px; }
-    .scrollable-products-track > div {
-        flex: 0 0 320px !important;
-        min-width: 320px !important;
-        max-width: 320px !important;
-    }
-    @media (max-width: 600px) {
-        .scrollable-products-track > div {
-            flex: 0 0 88% !important;
-            min-width: 88% !important;
-            max-width: 88% !important;
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ACTIVZ - Biotecnología Epigenética</title>
+    <!-- ==================== ESTILOS GENERALES Y RESPONSIVE (MÓVIL PRIMERO) ==================== -->
+    <style>
+        .activz-wrapper {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            color: #2D3748;
+            background-color: #F8F9FA;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            width: 100%;
+            overflow-x: hidden;
         }
-    }
+        .activz-wrapper * {
+            box-sizing: border-box;
+        }
+        .activz-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 16px;
+            width: 100%;
+        }
+        /* Colores Principales Corporativos */
+        .bg-navy { background-color: #0C2340; }
+        .text-navy { color: #0C2340; }
+        .bg-orange { background-color: #F37021; }
+        .bg-orange-hover:hover { background-color: #d95d13; }
+        .text-orange { color: #F37021; }
+        .text-green { color: #059669; }
+        .bg-whatsapp { background-color: #25D366; }
+        .bg-whatsapp-hover:hover { background-color: #1eb856; }
 
-    /* Pestañas de Navegación */
-    .tab-button {
-        padding: 10px 18px;
-        border-radius: 30px;
-        font-weight: 700;
-        font-size: 13px;
-        cursor: pointer;
-        border: 2px solid #0C2340;
-        background: transparent;
-        color: #0C2340;
-        transition: all 0.2s ease;
-    }
-    .tab-button.active {
-        background: #0C2340;
-        color: #FFFFFF;
-    }
-    .tab-content { display: none; }
-    .tab-content.active { display: block; }
+        /* Tarjetas y Sombras Visuales */
+        .card-shadow {
+            box-shadow: 0 8px 20px rgba(12, 35, 64, 0.08);
+            border-radius: 16px;
+            background: #ffffff;
+            border: 1px solid #E2E8F0;
+            overflow: hidden;
+        }
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-weight: 800;
+            text-decoration: none;
+            border-radius: 50px;
+            padding: 16px 28px;
+            transition: all 0.3s ease;
+            text-align: center;
+            cursor: pointer;
+            border: none;
+        }
+        .btn-action:hover {
+            transform: translateY(-2px);
+        }
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 16px;
+            background-color: #000;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
 
-    /* Cinta y Contador de Urgencia */
-    .ribbon-red {
-        background: linear-gradient(90deg, #DC2626 0%, #EF4444 100%);
-        color: #FFFFFF;
-        font-weight: 800;
-        font-size: 13px;
-        letter-spacing: 0.5px;
-        text-transform: uppercase;
-        padding: 8px 16px;
-        border-radius: 8px;
-        display: inline-block;
-    }
-    .urgency-bar {
-        background-color: #1E293B;
-        color: #FFFFFF;
-        font-size: 12px;
-        padding: 8px;
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 10px;
-    }
-    .timer-badge {
-        background: #DC2626;
-        color: #FFFFFF;
-        font-weight: 800;
-        padding: 2px 8px;
-        border-radius: 4px;
-        font-family: monospace;
-        font-size: 14px;
-    }
+        /* BARRA DESLIZANTE DE PRODUCTOS RESPONSIVE */
+        .product-slider-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: #ffffff;
+            border: 1px solid #CBD5E0;
+            padding: 6px 16px;
+            border-radius: 50px;
+            max-width: 360px;
+            margin: 10px auto 22px auto;
+            box-shadow: 0 4px 12px rgba(12, 35, 64, 0.06);
+        }
+        .slider-arrow-btn {
+            background: #0C2340;
+            color: #ffffff;
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            font-size: 14px;
+            font-weight: 900;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s ease;
+        }
+        .slider-arrow-btn:hover { background: #F37021; }
+        .slider-bar-text {
+            font-size: 11px;
+            font-weight: 700;
+            color: #0C2340;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-    .product-img-container {
-        text-align: center;
-        padding: 15px;
-        background: #ffffff;
-        border-bottom: 1px solid #E2E8F0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        min-height: 210px;
-    }
-    .product-img-container img {
-        max-width: 100%;
-        max-height: 190px;
-        object-fit: contain;
-    }
+        .scrollable-products-track {
+            display: flex !important;
+            overflow-x: auto !important;
+            scroll-behavior: smooth;
+            gap: 18px;
+            padding: 6px 4px 18px 4px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: thin;
+            scrollbar-color: #F37021 #CBD5E0;
+        }
+        .scrollable-products-track::-webkit-scrollbar { height: 8px; }
+        .scrollable-products-track::-webkit-scrollbar-track { background: #E2E8F0; border-radius: 10px; }
+        .scrollable-products-track::-webkit-scrollbar-thumb { background: #F37021; border-radius: 10px; }
+        .scrollable-products-track > div {
+            flex: 0 0 320px !important;
+            min-width: 320px !important;
+            max-width: 320px !important;
+        }
+        @media (max-width: 600px) {
+            .scrollable-products-track > div {
+                flex: 0 0 88% !important;
+                min-width: 88% !important;
+                max-width: 88% !important;
+            }
+        }
 
-    /* Estilos de Síntomas / Enfermedades Cubiertas */
-    .tag-symptom {
-        display: inline-block;
-        background: #EDF2F7;
-        color: #2D3748;
-        font-size: 11px;
-        font-weight: 600;
-        padding: 3px 8px;
-        border-radius: 4px;
-        margin: 2px;
-    }
-</style>
+        /* Pestañas de Navegación */
+        .tab-button {
+            padding: 10px 18px;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            border: 2px solid #0C2340;
+            background: transparent;
+            color: #0C2340;
+            transition: all 0.2s ease;
+        }
+        .tab-button.active {
+            background: #0C2340;
+            color: #FFFFFF;
+        }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
 
+        /* Cinta y Contador de Urgencia */
+        .ribbon-red {
+            background: linear-gradient(90deg, #DC2626 0%, #EF4444 100%);
+            color: #FFFFFF;
+            font-weight: 800;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            padding: 8px 16px;
+            border-radius: 8px;
+            display: inline-block;
+        }
+        .urgency-bar {
+            background-color: #1E293B;
+            color: #FFFFFF;
+            font-size: 12px;
+            padding: 8px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+        }
+        .timer-badge {
+            background: #DC2626;
+            color: #FFFFFF;
+            font-weight: 800;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: monospace;
+            font-size: 14px;
+        }
+
+        .product-img-container {
+            text-align: center;
+            padding: 15px;
+            background: #ffffff;
+            border-bottom: 1px solid #E2E8F0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 210px;
+        }
+        .product-img-container img {
+            max-width: 100%;
+            max-height: 190px;
+            object-fit: contain;
+        }
+
+        /* Estilos de Síntomas / Enfermedades Cubiertas */
+        .tag-symptom {
+            display: inline-block;
+            background: #EDF2F7;
+            color: #2D3748;
+            font-size: 11px;
+            font-weight: 600;
+            padding: 3px 8px;
+            border-radius: 4px;
+            margin: 2px;
+        }
+    </style>
+</head>
+<body>
 <div class="activz-wrapper">
 
     <!-- CINTA DE ESCASEZ -->
@@ -550,7 +560,7 @@
 
     </section>
 
-    <!-- MÓDULO II: OPORTUNIDAD DE NEGOCIO Y AUTOCONSUMO INTELIGENTE (OPTIMIZADO Y EDITABLE) -->
+    <!-- MÓDULO II: OPORTUNIDAD DE NEGOCIO Y AUTOCONSUMO INTELIGENTE -->
     <section class="activz-container" style="padding: 20px 16px 40px;">
         
         <div class="bg-navy" style="color: #ffffff; padding: 18px; border-radius: 12px; text-align: center; margin-bottom: 24px;">
@@ -566,11 +576,10 @@
                     ¿Por qué te conviene ser Distribuidor Independiente (2 en 1)?
                 </h3>
                 
-                <!-- LISTA DE BENEFICIOS EDITABLES (MODULAR) -->
                 <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; font-size: 13px;" id="editable-benefits-list">
                     
                     <li style="background: #ffffff; padding: 12px; border-radius: 8px; border: 1px solid #E2E8F0;">
-                        ✅ <strong>Precio al Por Mayor + Autoenvío Rebajado:</strong> Obtén tu tratamiento personal al precio más bajo y disfruta de descuentos exclusivos en tus recompras automáticas[cite: 27].
+                        ✅ <strong>Precio al Por Mayor + Autoenvío Rebajado:</strong> Obtén tu tratamiento personal al precio más bajo y disfruta de descuentos exclusivos en tus recompras automáticas.
                     </li>
                     
                     <li style="background: #ffffff; padding: 12px; border-radius: 8px; border: 1px solid #E2E8F0;">
@@ -582,7 +591,7 @@
                     </li>
                     
                     <li style="background: #ffffff; padding: 12px; border-radius: 8px; border: 1px solid #E2E8F0;">
-                        📈 <strong>Ascenso por Rangos y Porcentajes:</strong> Multiplica tus porcentajes de ganancia y maximiza todos los beneficios al expandir tu red[cite: 27].
+                        📈 <strong>Ascenso por Rangos y Porcentajes:</strong> Multiplica tus porcentajes de ganancia y maximiza todos los beneficios al expandir tu red.
                     </li>
                     
                     <li style="background: #ffffff; padding: 12px; border-radius: 8px; border: 1px solid #E2E8F0;">
@@ -592,7 +601,7 @@
                 </ul>
             </div>
 
-            <!-- VIDEO 2: PLAN DE COMPENSACIÓN Y FRANQUICIA (OPTIMIZADO) -->
+            <!-- VIDEO 2: PLAN DE COMPENSACIÓN -->
             <div style="flex: 1 1 420px;">
                 <div class="video-container">
                     <iframe src="https://www.youtube-nocookie.com/embed/Hq8prA7hvJQ" title="ACTIVZ Plan de Compensacion" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -605,7 +614,7 @@
 
     </section>
 
-    <!-- TABLA COMPARATIVA DE CIERRE (OFICIAL ACTIVZ) -->
+    <!-- TABLA COMPARATIVA DE CIERRE -->
     <section class="activz-container" style="padding: 10px 16px 30px;">
         <div class="card-shadow" style="padding: 20px;">
             <h3 class="text-navy" style="font-size: 18px; font-weight: 700; text-align: center; margin: 0 0 14px;">
@@ -624,23 +633,23 @@
                     <tbody>
                         <tr style="border-bottom: 1px solid #E2E8F0;">
                             <td style="padding: 10px;">Precio de Mayorista</td>
-                            <td style="padding: 10px; text-align: center; color: #38A169;">✓ Sí (Autoenvío mensual)[cite: 27]</td>
-                            <td style="padding: 10px; text-align: center; color: #38A169; font-weight: 700;">✓ Sí (Siempre al por mayor)[cite: 27]</td>
+                            <td style="padding: 10px; text-align: center; color: #38A169;">✓ Sí (Autoenvío mensual)</td>
+                            <td style="padding: 10px; text-align: center; color: #38A169; font-weight: 700;">✓ Sí (Siempre al por mayor)</td>
                         </tr>
                         <tr style="border-bottom: 1px solid #E2E8F0;">
                             <td style="padding: 10px;">Kit de Activación / Compras</td>
-                            <td style="padding: 10px; text-align: center; color: #4A5568;">Sin compras mínimas rígidas[cite: 27]</td>
-                            <td style="padding: 10px; text-align: center; color: #38A169;">Requiere Kit de Activación[cite: 27]</td>
+                            <td style="padding: 10px; text-align: center; color: #4A5568;">Sin compras mínimas rígidas</td>
+                            <td style="padding: 10px; text-align: center; color: #38A169;">Requiere Kit de Activación</td>
                         </tr>
                         <tr style="border-bottom: 1px solid #E2E8F0;">
                             <td style="padding: 10px;">Programa de Lealtad y Productos Gratis</td>
-                            <td style="padding: 10px; text-align: center; color: #38A169;">✓ Producto Gratis (Min. 50 VP por 3 meses)[cite: 27]</td>
-                            <td style="padding: 10px; text-align: center; color: #38A169;">✓ Puntos de recompensa mensuales[cite: 27]</td>
+                            <td style="padding: 10px; text-align: center; color: #38A169;">✓ Producto Gratis (Min. 50 VP por 3 meses)</td>
+                            <td style="padding: 10px; text-align: center; color: #38A169;">✓ Puntos de recompensa mensuales</td>
                         </tr>
                         <tr>
                             <td style="padding: 10px;">Generar Ingresos y Comisiones en Dólares</td>
-                            <td style="padding: 10px; text-align: center; color: #E53E3E;">✕ No[cite: 27]</td>
-                            <td style="padding: 10px; text-align: center; color: #38A169; font-weight: 800;">✓ HABILITADO[cite: 27]</td>
+                            <td style="padding: 10px; text-align: center; color: #E53E3E;">✕ No</td>
+                            <td style="padding: 10px; text-align: center; color: #38A169; font-weight: 800;">✓ HABILITADO</td>
                         </tr>
                     </tbody>
                 </table>
@@ -721,3 +730,5 @@
         }, 1000);
     })();
 </script>
+</body>
+</html>
